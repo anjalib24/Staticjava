@@ -1,0 +1,84 @@
+In Java, the `static` keyword is used for methods that need to be accessed or executed without creating an instance of the class. Here's why `static` methods are used and how they differ from instance methods:
+
+### Why Use `static` Methods
+
+1. **Class-Level Operations**:
+   - **Utility Methods**: `static` methods are often used for utility or helper functions that perform operations not dependent on instance variables. For example, methods in the `Math` class like `Math.sqrt()` are `static` because they operate on values rather than instances of `Math`.
+
+2. **No Instance Required**:
+   - **Access Without Object**: `static` methods can be called on the class itself rather than requiring an instance. This is useful for methods that should be common across all instances or do not need instance-specific data.
+
+3. **Shared State**:
+   - **Access to Static Variables**: `static` methods can access other `static` variables and methods directly. This is useful for scenarios where methods need to operate on class-level data.
+
+4. **Efficiency**:
+   - **Avoid Object Creation**: Using `static` methods avoids the overhead of creating an instance of the class, which can be more efficient when you only need to perform a simple operation.
+
+### Example of `static` Methods
+
+Here’s an example that demonstrates the use of `static` methods:
+
+```java
+public class Calculator {
+    // Static method to add two numbers
+    public static int add(int a, int b) {
+        return a + b;
+    }
+
+    // Static method to subtract two numbers
+    public static int subtract(int a, int b) {
+        return a - b;
+    }
+
+    public static void main(String[] args) {
+        int sum = Calculator.add(5, 3); // Call static method without creating an instance
+        int difference = Calculator.subtract(5, 3); // Call static method without creating an instance
+        
+        System.out.println("Sum: " + sum);
+        System.out.println("Difference: " + difference);
+    }
+}
+```
+
+#### Explanation:
+
+1. **`static` Methods**:
+   - `add` and `subtract` are `static` methods. They can be called on the class `Calculator` directly without creating an instance of `Calculator`.
+
+2. **Calling Static Methods**:
+   - In the `main` method, `Calculator.add(5, 3)` and `Calculator.subtract(5, 3)` are used to call the `static` methods. No instance of `Calculator` is created.
+
+### Comparison with Instance Methods
+
+- **Instance Methods**: Instance methods operate on instances of the class and can access instance variables. They require creating an object of the class to be called.
+
+  ```java
+  public class Person {
+      private String name;
+
+      public Person(String name) {
+          this.name = name;
+      }
+
+      // Instance method
+      public void greet() {
+          System.out.println("Hello, my name is " + name);
+      }
+  }
+
+  public class Main {
+      public static void main(String[] args) {
+          Person person = new Person("Alice");
+          person.greet(); // Call instance method on an object
+      }
+  }
+  ```
+
+  - In this example, `greet` is an instance method that needs an object of `Person` to be invoked.
+
+### Summary
+
+- **Static Methods**: Defined with `static`, can be called without creating an instance, and are used for operations that do not depend on instance-specific data.
+- **Instance Methods**: Operate on instances of the class and can access instance variables and methods.
+
+Using `static` methods appropriately helps in organizing code effectively, especially for utility functions and operations that do not require instance-specific context.

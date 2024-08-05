@@ -1,0 +1,117 @@
+In Java, **`static`** and **instance** variables are used for different purposes and have distinct characteristics. Here's a breakdown of the differences between them:
+
+ Static Variables (Class Variables)
+
+1. Definition:
+   - Declared with the `static` keyword.
+   - Belong to the class itself rather than to any specific instance of the class.
+
+2. Storage:
+   - Shared among all instances of the class. There is only one copy of a `static` variable, regardless of how many instances of the class are created.
+
+3. **Initialization**:
+   - Initialized when the class is first loaded. It can be initialized at the point of declaration or in a static block.
+
+4. **Access**:
+   - Can be accessed directly using the class name or through an instance of the class (though it’s preferable to access them via the class name for clarity).
+
+5. **Use Case**:
+   - Used for class-wide constants or data that should be common to all instances. Examples include counters, configuration settings, or utility constants.
+
+### Example of Static Variable
+
+```java
+public class Counter {
+    private static int count = 0; // Static variable
+
+    public Counter() {
+        count++;
+    }
+
+    public static int getCount() {
+        return count;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        new Counter();
+        new Counter();
+
+        System.out.println("Count: " + Counter.getCount()); // Access static variable via class
+    }
+}
+```
+
+#### Output:
+
+```
+Count: 2
+```
+
+### Instance Variables (Non-Static Variables)
+
+1. **Definition**:
+   - Declared without the `static` keyword.
+   - Belong to individual instances of the class.
+
+2. **Storage**:
+   - Each instance of the class has its own copy of instance variables. They are not shared between instances.
+
+3. **Initialization**:
+   - Initialized when an instance of the class is created. They can be initialized at the point of declaration, in a constructor, or through other methods.
+
+4. **Access**:
+   - Accessed through an instance of the class. Each instance has its own set of instance variables.
+
+5. **Use Case**:
+   - Used for data that is specific to each instance of the class, such as attributes or properties that differ from one object to another.
+
+### Example of Instance Variable
+
+```java
+public class Person {
+    private String name; // Instance variable
+
+    public Person(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Person person1 = new Person("Alice");
+        Person person2 = new Person("Bob");
+
+        System.out.println("Person 1: " + person1.getName()); // Access instance variable via object
+        System.out.println("Person 2: " + person2.getName()); // Access instance variable via object
+    }
+}
+```
+
+#### Output:
+
+```
+Person 1: Alice
+Person 2: Bob
+```
+
+### Summary
+
+- **Static Variables**: 
+  - Shared across all instances.
+  - Initialized once when the class is loaded.
+  - Accessed through the class name or an instance.
+  - Ideal for class-wide data or constants.
+
+- **Instance Variables**: 
+  - Unique to each instance of the class.
+  - Initialized when an instance is created.
+  - Accessed through an instance of the class.
+  - Ideal for instance-specific data.
+
+Understanding these differences helps in designing classes and managing data efficiently, ensuring that shared data and instance-specific data are handled appropriately.

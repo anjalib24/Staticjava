@@ -1,0 +1,59 @@
+The `static` keyword in Java is used to define class-level members, meaning that the member belongs to the class itself rather than any specific instance of the class. Here's why and how the `static` keyword is used:
+
+Key Points of the `static` Keyword
+
+1. **Class-Level Access**:
+   - **Static Fields**: These are shared across all instances of the class. They are used when you need a variable that is common to all instances. For example, a constant value like `PI` in a math-related class can be static.
+   - **Static Methods**: These methods can be called without creating an instance of the class. They can only access static fields and other static methods directly.
+
+2. **Memory Efficiency**:
+   - Since static fields are shared among all instances, memory usage is optimized. There's no need to store multiple copies of the same data for each instance.
+
+3. **Utility Methods**:
+   - Static methods are often used for utility or helper functions that don’t depend on instance-specific data. For instance, methods in the `Math` class like `Math.sqrt()` are static because they operate on values rather than on any specific instance.
+
+4. **Main Method**:
+   - The `main` method, which is the entry point for any Java application, must be static. This is because the Java Virtual Machine (JVM) calls this method without creating an instance of the class.
+
+### Example
+
+Here's an example to illustrate the use of the `static` keyword:
+
+```java
+public class Counter {
+    private static int count = 0; // Static variable to keep track of the number of instances
+
+    public Counter() {
+        count++;
+    }
+
+    public static int getCount() {
+        return count; // Static method accessing the static variable
+    }
+    
+    public static void main(String[] args) {
+        new Counter(); // Create instance 1
+        new Counter(); // Create instance 2
+        
+        System.out.println("Number of Counter instances: " + Counter.getCount());
+    }
+}
+```
+
+#### Explanation:
+
+1. **Static Variable**:
+   - `private static int count = 0;` is a static variable that is shared among all instances of the `Counter` class. It keeps track of the total number of instances created.
+
+2. **Constructor**:
+   - Each time a new `Counter` instance is created, the constructor increments the `count` variable.
+
+3. **Static Method**:
+   - `public static int getCount()` is a static method that returns the current value of the static variable `count`. It can be called without creating an instance of `Counter`.
+
+4. **Main Method**:
+   - The `main` method is static and serves as the entry point for the program. It creates two instances of `Counter` and then prints the number of instances created using the static method `getCount`.
+
+### Summary
+
+The `static` keyword in Java provides a way to define members that belong to the class itself rather than to any specific instance. It is useful for shared data, utility methods, and ensuring that certain methods can be called without needing to create an instance of the class.

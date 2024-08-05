@@ -1,0 +1,89 @@
+In Java, the difference between **static** and **non-static** methods is crucial for understanding how methods interact with class-level and instance-level data. Here's a detailed comparison:
+
+### Static Methods
+
+1. **Definition**:
+   - Declared with the `static` keyword.
+   - Belong to the class itself rather than to any particular instance.
+
+2. **Access**:
+   - Can be called using the class name or through an instance of the class, though it is recommended to use the class name for clarity.
+   - Cannot access instance variables or instance methods directly. They can only access static variables and methods.
+
+3. **Usage**:
+   - Typically used for operations that do not depend on instance-specific data. Examples include utility methods or operations that are common to all instances.
+
+4. **Example**:
+   ```java
+   public class MathUtil {
+       public static int add(int a, int b) {
+           return a + b; // Static method
+       }
+   }
+
+   public class Main {
+       public static void main(String[] args) {
+           int sum = MathUtil.add(5, 3); // Call static method using class name
+           System.out.println("Sum: " + sum);
+       }
+   }
+   ```
+
+5. **Characteristics**:
+   - **Memory**: Shared across all instances of the class. There is only one copy of the static method.
+   - **Lifecycle**: Exists as long as the class is loaded.
+
+### Non-Static Methods (Instance Methods)
+
+1. **Definition**:
+   - Declared without the `static` keyword.
+   - Belong to individual instances of the class.
+
+2. **Access**:
+   - Must be called on an instance of the class. You need to create an object to invoke a non-static method.
+   - Can access both static and instance variables and methods.
+
+3. **Usage**:
+   - Used for operations that depend on instance-specific data. They often manipulate or use the state of the object.
+
+4. **Example**:
+   ```java
+   public class Person {
+       private String name; // Instance variable
+
+       public Person(String name) {
+           this.name = name;
+       }
+
+       public void greet() {
+           System.out.println("Hello, my name is " + name); // Non-static method
+       }
+   }
+
+   public class Main {
+       public static void main(String[] args) {
+           Person person = new Person("Alice");
+           person.greet(); // Call non-static method using an instance
+       }
+   }
+   ```
+
+5. **Characteristics**:
+   - **Memory**: Each instance of the class has its own copy of non-static methods and instance variables.
+   - **Lifecycle**: Exists as long as the instance exists.
+
+### Summary
+
+- **Static Methods**:
+  - **Belong**: To the class itself.
+  - **Access**: Can be called without creating an instance.
+  - **Data Access**: Can only directly access static data (variables and methods).
+  - **Usage**: Ideal for utility functions or operations that are not tied to instance-specific data.
+
+- **Non-Static Methods**:
+  - **Belong**: To instances of the class.
+  - **Access**: Must be called on an instance of the class.
+  - **Data Access**: Can access both static and instance data.
+  - **Usage**: Ideal for operations that need to interact with or modify instance-specific data.
+
+Understanding these differences is key to designing effective classes and methods in Java. It ensures that methods are used appropriately depending on whether they need to operate on class-level or instance-level data.

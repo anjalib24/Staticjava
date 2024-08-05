@@ -1,0 +1,37 @@
+In Java, the `static` keyword is used for the `main` method to ensure that it can be invoked by the Java Virtual Machine (JVM) without the need to create an instance of the class. Here's a detailed explanation of why this is necessary:
+
+### Why `static` is Required for the `main` Method
+
+1. **Entry Point of the Program**:
+   - The `main` method is the entry point for any Java application. It is the method that the JVM looks for when starting a Java program. If it were not `static`, the JVM would need to create an instance of the class before it could invoke the `main` method. This would complicate the startup process and make it less efficient.
+
+2. **No Object Required**:
+   - Since the `main` method is where the execution of the program begins, it must be accessible without requiring an object to be created first. Declaring the `main` method as `static` allows the JVM to call it directly using the class name.
+
+3. **Consistency and Simplicity**:
+   - Having `main` as a `static` method simplifies the Java runtime environment. The JVM follows a standard process to locate and execute the `main` method, making the start-up process predictable and consistent across all Java applications.
+
+### Example of `main` Method
+
+Here’s the standard signature for the `main` method:
+
+```java
+public class MainExample {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}
+```
+
+#### Explanation:
+
+1. **`public`**: The method must be `public` so that the JVM can access it from outside the class.
+2. **`static`**: Allows the JVM to call the method without creating an instance of the class.
+3. **`void`**: The `main` method does not return any value.
+4. **`main`**: The name of the method. This is a special name recognized by the JVM.
+5. **`String[] args`**: An array of `String` objects that can be used to pass command-line arguments to the program.
+
+### Summary
+
+- The `static` keyword is used in the `main` method to ensure that the JVM can invoke it without creating an instance of the class.
+- This allows for a simple and consistent entry point for starting Java applications, making the execution of programs straightforward and efficient.
